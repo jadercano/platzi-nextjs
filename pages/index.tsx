@@ -13,8 +13,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div>
-      <Navbar />
+    <>
       <h1>Hello platzi!</h1>
       {productList ? (
         productList.map((product) => (
@@ -27,7 +26,7 @@ const HomePage = () => {
       ) : (
         <h2>Loading...</h2>
       )}
-    </div>
+    </>
   );
 };
 
