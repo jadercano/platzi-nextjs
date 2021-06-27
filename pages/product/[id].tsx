@@ -1,16 +1,16 @@
 import { useRouter } from "next/router";
 import React from "react";
 
-const ProductItem = () => {
+const ProductPage = () => {
   const {
-    query: { productId },
+    query: { id },
   } = useRouter();
 
   return (
     <div>
-      <h1>Page details for product {productId}</h1>
+      <h1>Page details for product {id}</h1>
     </div>
   );
 };
 
-export default ProductItem;
+export default ProductPage;
