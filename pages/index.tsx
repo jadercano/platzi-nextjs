@@ -1,10 +1,10 @@
 import KawaiiHeader from "@components/KawaiiHeader/KawaiiHeader";
 import Layout from "@components/Layout/Layout";
-import Link from "next/link";
+import ProductList from "@components/ProductList/ProductList";
 import React, { useEffect, useState } from "react";
 
 const HomePage = () => {
-  const [productList, setProductList] = useState<TProduct[]>();
+  const [productList, setProductList] = useState<TProduct[]>([]);
 
   useEffect(() => {
     window
@@ -16,7 +16,7 @@ const HomePage = () => {
   return (
     <Layout>
       <KawaiiHeader />
-      {/* <ProductList products={productList} /> */}
+      <ProductList products={productList} />
     </Layout>
   );
 };
