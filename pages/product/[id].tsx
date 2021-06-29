@@ -16,10 +16,6 @@ const ProductPage = () => {
     }
   }, [query.id]);
 
-  if (!product) {
-    return <h1>Loading...</h1>;
-  }
-
   return (
     <Layout>
       {product == null ? null : <ProductSummary product={product} />}
