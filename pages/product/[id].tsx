@@ -1,21 +1,35 @@
 import Layout from "@components/Layout/Layout";
 import ProductSummary from "@components/ProductSummary/ProductSummary";
+import axios from "axios";
+import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-const ProductPage = () => {
-  const { query } = useRouter();
-  const [product, setProduct] = useState<TProduct>();
+export const getStaticPaths: GetStaticPaths = async () => {
+  const {
+    data: { data: productList },
+  } = await axios.get<TAPIAvoResponse>("http://localhost:3000/api/avo");
+  const paths = productList.map(({ id }) => ({
+    params: { id },
+  }));
+  return {
+    paths,
+    fallback: false,
+  };
+};
 
-  useEffect(() => {
-    if (query.id) {
-      window
-        .fetch(`/api/avo/${query.id}`)
-        .then((response) => response.json())
-        .then((data: TProduct) => setProduct(data));
-    }
-  }, [query.id]);
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const { data: product } = await axios.get<TAPIAvoResponse>(
+    `http://localhost:3000/api/avo/${params?.id}`
+  );
+  return {
+    props: {
+      product,
+    },
+  };
+};
 
+const ProductPage = ({ product }: { product: TProduct }) => {
   return (
     <Layout>
       {product == null ? null : <ProductSummary product={product} />}

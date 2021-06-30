@@ -2,7 +2,7 @@ import KawaiiHeader from "@components/KawaiiHeader/KawaiiHeader";
 import Layout from "@components/Layout/Layout";
 import ProductList from "@components/ProductList/ProductList";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 export const getServerSideProps = async () => {
   const {
